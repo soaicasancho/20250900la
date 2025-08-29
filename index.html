@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" translate="no">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -573,29 +573,20 @@
     </div>
 
     <div class="section">
+        <div class="section-title" onclick="toggleSection('linkRamen')">
+            <span class="toggle-icon" id="icon-linkRamen">+</span> <span id="group-ramen"></span>
+            <span class="countdown" id="countdown-ramen"></span>
+        </div>
+        <div id="linkRamen" class="link-container collapsed"></div>
+    </div>
+
+    <div class="section">
         <div class="section-title" onclick="toggleSection('linkGioiThieu')">
             <span class="toggle-icon" id="icon-linkGioiThieu">+</span> <span id="group-gt"></span>
             <span class="countdown" id="countdown-gioiThieu"></span>
         </div>
         <div id="linkGioiThieu" class="link-container collapsed"></div>
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="section">
         <div class="section-title" onclick="toggleSection('linkShein')">
@@ -604,32 +595,7 @@
         </div>
         <div id="linkShein" class="link-container collapsed"></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <div class="bottom-section">
     <div class="section" id="regularColumn">
@@ -739,8 +705,6 @@
     // ✅ Chỉnh số ngày bị khóa sau khi bấm xem video
     const unlockDays = 15; // 👈 Số ngày đếm ngược khi xem video
 
-    // ⛔️ KHỐI CÀI ĐẶT CŨ ĐÃ BỊ XÓA ⛔️
-
     // ✅ [CÀI ĐẶT MỚI] Cài đặt hiển thị và thời gian tự động ẩn cho các mục
     const sectionSettings = {
         
@@ -751,7 +715,7 @@
         
         tuyet: {
             enabled: true,
-            expires: '2025-08-29T09:00:00+09:00' // đặt là expires: null nếu không muốn tự tắt
+            expires: '2025-09-08T00:05:00+09:00' // đặt là expires: null nếu không muốn tự tắt
         },
         
         tao: {
@@ -779,6 +743,10 @@
             enabled: true,
             expires: '2025-08-20T23:59:59+09:00' // đặt là expires: null nếu không muốn tự tắt
         },
+        ramen: {
+            enabled: true,
+            expires: null // đặt là expires: null nếu không muốn tự tắt
+        },
         gioiThieu: {
             enabled: true,
             expires: '2025-08-20T23:59:59+09:00' // đặt là expires: null nếu không muốn tự tắt
@@ -786,7 +754,7 @@
        
         shein: {
             enabled: true,
-            expires: null // đặt là expires: null nếu không muốn tự tắt
+            expires: '2025-08-25T23:59:59+09:00' // đặt là expires: null nếu không muốn tự tắt
         }
     };
 
@@ -839,9 +807,9 @@
     ];
 
     const linkTuyet = [
-        {url: "https://lite.tiktok.com/t/ZSSWfoNBD/", label: "Bấm ở đây GL6", highlight: true},
-        {url: "", label: "🔒", protected: true},
-        {url: "https://lite.tiktok.com/t/ZSSWP6hgf/", label: "🔒 GL7"},
+        {url: "https://lite.tiktok.com/t/ZSHt86bJrU4dv-FMqFa/", label: "Bấm ở đây GL6", highlight: true},
+        {url: "", label: "🔒", protected: true, hidden: true},
+        {url: "", label: "🔒 GL7", hidden: true},
         {url: "", label: "🔒", protected: true, hidden: true},
         {url: "", label: "🔒", hidden: true}
     ];
@@ -855,9 +823,7 @@
     ];
     
     const linkKhoBau = [
-        {url: "", label: "112"},
-        {url: "", label: "Test"},
-        {url: "https://jp.shein.com/user/auth/login?direction=nav", label: "Shein"}
+        {url: "", label: ""}
     ];
 
     const linkCauCa = [
@@ -878,13 +844,35 @@
         {url: "https://lite.tiktok.com/t/ZSBBvHmmd/", label: "GL7"}
     ];
 
+    const linkRamen = [
+        {url: "https://lite.tiktok.com/t/ZSHGT5mvrg5To-9NKNb/", label: "SONY 26"},
+        {url: "https://lite.tiktok.com/t/ZSHGTaQrThtJG-ZeyPZ/", label: "SONY22"},
+        {url: "https://lite.tiktok.com/t/ZSHGTHXQRJBLk-Iu7yj/", label: "SONY 4"},
+        {url: "https://lite.tiktok.com/t/ZSHGTqx6Qgu2a-c6rRS/", label: "C33 1s3"},
+        {url: "https://lite.tiktok.com/t/ZSHG7Nm6beHBv-YnMMB/", label: "C003 1s"},
+        {url: "https://lite.tiktok.com/t/ZSAubCVDu/", label: "C54 700"},
+        {url: "https://lite.tiktok.com/t/ZSAutgE65/", label: "C38 700"},
+        {url: "https://lite.tiktok.com/t/ZSAuwPS4y/", label: "H37 1S3"},
+        {url: "https://lite.tiktok.com/t/ZSAuwJqdM/", label: "C87 1S3"},
+        {url: "https://lite.tiktok.com/t/ZSAu72Q4U/", label: "C86 700"},
+        {url: "https://lite.tiktok.com/t/ZSAu7L94d/", label: "C83 1S"},
+        {url: "https://lite.tiktok.com/t/ZSAuWVbEQ/", label: "C82 1S"},
+        {url: "https://lite.tiktok.com/t/ZSAun7yY7/", label: "C74 700"},
+        {url: "https://lite.tiktok.com/t/ZSAuWdA7q/", label: "C54 700"},
+        {url: "https://lite.tiktok.com/t/ZSAutcn2R/", label: "C41 1S"},
+        {url: "https://lite.tiktok.com/t/ZSAHdhd4V/", label: "C70 1S"},
+        {url: "https://lite.tiktok.com/t/ZSAuoNjrN/", label: "T17 700"},
+        {url: "https://lite.tiktok.com/t/ZSAuoErsN/", label: "C84 700"},
+        {url: "https://lite.tiktok.com/t/ZSAuEWmG4/", label: "C79 700"}
+    ];
+    
     const linkGioiThieu = [
         {url: "https://vt.tiktok.com/ZSh4FAKfk/", label: "MRT 005"}
     ];
 
     const linkShein = [
         {url: "https://jp.shein.com/user/auth/login?direction=nav", label: "Tạo Tài Khoản"},
-        {url: "", label: "🔓🔓", protected: true},
+        {url: "https://onelink.shein.com/16/4ywszmtrehql", label: "Full"},
         {url: "", label: "🔓🔓", protected: true},
         {url: "", label: "🔓🔓", protected: true},
         {url: "", label: "🔓🔓", protected: true}
@@ -1427,7 +1415,7 @@
 
     // ✅ Đổi icon + ↔ − khi thu gọn/mở rộng nhóm
     function toggleSection(id) {
-        const allSections = ['linkCoc', 'linkTuyet', 'linkTao', 'linkSumo', 'linkKhoBau', 'linkCauCa', 'link500Like', 'linkQRcode', 'linkGioiThieu', 'linkShein'];
+        const allSections = ['linkCoc', 'linkTuyet', 'linkTao', 'linkSumo', 'linkKhoBau', 'linkCauCa', 'link500Like', 'linkQRcode', 'linkRamen', 'linkGioiThieu', 'linkShein'];
 
         allSections.forEach(sectionId => {
             const container = document.getElementById(sectionId);
@@ -1500,6 +1488,13 @@
         document.querySelector('[onclick="toggleSection(\'linkQRcode\')"]').parentElement.style.display = '';
     } else {
         document.querySelector('[onclick="toggleSection(\'linkQRcode\')"]').parentElement.style.display = 'none';
+    }
+
+    if (isSectionVisible('ramen')) {
+        renderLinks('linkRamen', linkRamen, 'ramen', 'Ramen', true);
+        document.querySelector('[onclick="toggleSection(\'linkRamen\')"]').parentElement.style.display = '';
+    } else {
+        document.querySelector('[onclick="toggleSection(\'linkRamen\')"]').parentElement.style.display = 'none';
     }
 
     if (isSectionVisible('gioiThieu')) {
@@ -1765,6 +1760,7 @@
             "group-cauca": "🎣  Câu Cá  🎣",
             "group-500like": "🧡 500 Like 🧡",
             "group-QR": "Quét Mã QR",
+            "group-ramen": "🍜Mì Ăn Liền🍜",
             "group-gt": "Giới Thiệu 📢",
             "group-shein": "Shein",
             "info1": "Các Bạn giúp mình 1 lượt follow Video đang xem nhé!",
@@ -1825,6 +1821,7 @@
             "group-cauca": "🎣  Fishing  🎣",
             "group-500like": "🧡 500 Like 🧡",
             "group-QR": "Scan QR Code",
+            "group-ramen": "🍜Ramen🍜",
             "group-gt": "Intro 📢",
             "group-shein": "Shein",
             "info1": "We’d appreciate your support with a follow!",
@@ -1885,6 +1882,7 @@
             "group-cauca": "🎣  釣り  🎣",
             "group-500like": "🧡 500 Like 🧡",
             "group-QR": "QRコードを読み取り",
+            "group-ramen": "🍜ラーメン🍜",
             "group-gt": "紹介 📢",
             "group-shein": "Shein",
             "info1": "ぜひテックトックフォローをお願いします！",
@@ -1976,6 +1974,7 @@
         document.getElementById('group-cauca').textContent = t["group-cauca"];
         document.getElementById('group-500like').textContent = t["group-500like"];
         document.getElementById('group-QR').textContent = t["group-QR"];
+        document.getElementById('group-ramen').textContent = t["group-ramen"];
         document.getElementById('group-gt').textContent = t["group-gt"];
         document.getElementById('group-shein').textContent = t["group-shein"];
         document.getElementById('info1').textContent = t["info1"];
